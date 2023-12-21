@@ -1,0 +1,14 @@
+.bg-cover{
+  background-image: url('/assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.foto-login{
+  margin-left: -50px;
+  width:600px;
+  height:400px;
+}
+.bg-white{
+  background-color: white;
+}
