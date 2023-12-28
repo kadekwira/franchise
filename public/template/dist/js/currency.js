@@ -1,12 +1,9 @@
-const harga_pokok = document.getElementById("harga_pokok");
-const harga_jual = document.getElementById("harga_jual");
+const harga = document.getElementById("harga");
 
 
-harga_pokok.addEventListener("keyup", function(e) {
-  harga_pokok.value = formatRupiah(this.value, "Rp. ");
-});
-harga_jual.addEventListener("keyup", function(e) {
-  harga_jual.value = formatRupiah(this.value, "Rp. ");
+
+harga.addEventListener("keyup", function(e) {
+  harga.value = formatRupiah(this.value, "Rp. ");
 });
 
 

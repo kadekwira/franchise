@@ -92,12 +92,14 @@
   color: var(--white);
   border: none;
   border-radius: 20px !important;
+  text-align: center;
   
 }
 
 .daftar-home:hover{
   text-decoration:none;
   color: var(--white);
+  text-align: center;
 }
 
 #about{

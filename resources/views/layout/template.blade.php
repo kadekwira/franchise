@@ -1,3 +1,4 @@
+@if (auth()->check())
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +62,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="/" class="{{ Request::is('/') ? 'active' : '' }} nav-link ">
+                            <a href="/admin" class="{{ Request::is('/') ? 'active' : '' }} nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -79,19 +80,25 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/products" class="nav-link">
+                                    <a href="/admin/bahan" class="nav-link">
                                         <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Data Products</p>
+                                        <p>Data Bahan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/unaktif-products" class="nav-link">
+                                    <a href="/admin/alat" class="nav-link">
                                         <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Products Tidak Aktif</p>
+                                        <p>Data Alat</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/user" class="nav-link">
+                                    <a href="/admin/paket" class="nav-link">
+                                        <i class="left fas fa-angle-right me-2 ms-4"></i>
+                                        <p>Data Paket</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/user" class="nav-link">
                                         <i class="left fas fa-angle-right me-2 ms-4"></i>
                                         <p>User</p>
                                     </a>
@@ -102,92 +109,25 @@
                             <a href="#" class="nav-link {{ Request::is('kasir') ? 'active' : '' }}">
                                 <i class=" nav-icon fas fa-computer"></i>
                                 <p>
-                                    Kasir
+                                    Transaksi
                                 </p>
                                 <i class="right fas fa-angle-left"></i>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/kasir" class="nav-link">
+                                    <a href="/admin/penjualan" class="nav-link">
                                         <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Kasir</p>
-                                        
+                                        <p>Penjualan</p>
                                     </a>
                                 </li>
+         
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ Request::is('payrol') ? 'active' : '' }} ">
-                                <i class="nav-icon fas fa-credit-card"></i>
-                                <p>
-                                    Data Gaji
-                                </p>
-                                <i class="right fas fa-angle-left"></i>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/payrol" class="nav-link">
-                                        <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Gaji</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ Request::is('akun-pegawai') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Data Akun
-                                </p>
-                                <i class="right fas fa-angle-left"></i>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/akun-pegawai" class="nav-link">
-                                        <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Akun Pegawai</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#"
-                                class="nav-link 
-            {{ Request::is('data-absen-bulanan') ? 'active' : '' }}
-            {{ Request::is('detail-absen-bulanan') ? 'active' : '' }}
-            {{ Request::is('data-laporan-gaji') ? 'active' : '' }}
-            ">
-                                <i class="nav-icon fas fa-flag"></i>
-                                <p>
-                                    Laporan
-                                </p>
-                                <i class="right fas fa-angle-left"></i>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/data-absen-bulanan" class="nav-link">
-                                        <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Data Absen Bulanan</p>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="/data-laporan-gaji" class="nav-link">
-                                        <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Data Laporan Gaji</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/detail-absen" class="nav-link">
-                                        <i class="left fas fa-angle-right me-2 ms-4"></i>
-                                        <p>Detail Absen Bulanan</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                         <li class="nav-item ">
                             <form action="/logout" class="nav-link ms-2 text-light" method="POST">
                                 @csrf
+                                <input type="hidden" name="role" value="{{ auth()->user()->role }}">
                                 <i class="fa-solid fa-arrow-right-from-bracket me-2"></i>
                                 <button class="btn text-light" type="submit">
                                     Logout
@@ -255,6 +195,14 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ url('template') }}/dist/js/pages/dashboard2.js"></script>
     @yield('chart')
+    @yield('tooltips')
 </body>
 
 </html>
+@else
+    <script>window.location = "/login";</script>
+@endif
+
+
+
+

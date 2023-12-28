@@ -1,0 +1,38 @@
+.bg-utama{
+  background-color: #002856;
+}
+.h-65{
+  height:75vh;
+}
+.bg-circle1{
+  color:#4942E4 !important; 
+}
+.bg-circle2{
+  color:#C4B0FF !important; 
+}
+
+.form-hover{
+  margin-top:10px;
+  margin-left: 5px;
+  display: flex;
+  gap:10px;
+}
+.buttonHover{
+  color: white;
+  background: sandybrown;
+}
+
+.bg-cover{
+  background-image: url('/assets/img/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-cover1{
+  background-color: #001630;
+}
+.wa{
+  width: 50px;
+  background-color: white;
+  padding:5px;
+  border-radius: 50%;
+}
